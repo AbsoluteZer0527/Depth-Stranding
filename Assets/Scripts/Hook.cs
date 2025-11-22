@@ -80,6 +80,12 @@ public class Hook : MonoBehaviour
 
         while (currentHookLength > 0)
         {
+            if (hookedObject == null || currentHookLength > Player.instance.hookRange)
+            {
+                yield return Retract();
+                yield break;
+            }
+
             hookOrigin = transform.position;
             Vector2 headPos = (Vector2)hookedObject.transform.position + objHeadOffset;
             currentHookLength = (headPos - hookOrigin).magnitude;
