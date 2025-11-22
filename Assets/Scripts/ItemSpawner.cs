@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ItemSpawner : MonoBehaviour
 {
     [Header("References")]
-    public GameObject itemPrefab;
+    public GameObject[] itemPrefabs;
     public Transform player;
 
     [Header("Spawn Settings")]
@@ -107,7 +107,13 @@ public class ItemSpawner : MonoBehaviour
             int value = (int) Random.Range(valueRange.x, valueRange.y + 1);
 
             // Spawn
-            GameObject newItem = Instantiate(itemPrefab, spawnPos, Quaternion.identity);
+            if(itemPrefabs == null || itemPrefabs.Length == 0)
+            {
+                Debug.LogError("No item prefabs assigned to ItemSpawner!");
+                return;
+            }
+            GameObject prefabToSpawn = itemPrefabs[Random.Range(0, itemPrefabs.Length)]; 
+            GameObject newItem = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity); 
             Item itemComp = newItem.GetComponent<Item>();
 
             if(itemComp != null)
