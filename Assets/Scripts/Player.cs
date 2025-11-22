@@ -1,5 +1,8 @@
+using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,6 +33,8 @@ public class Player : MonoBehaviour
     public float maxHp = 10.0f;
     public float hp = 10.0f;
 
+    public bool gameStarted = false;
+
     private void Awake()
     {
         if (instance != null && instance != this) Destroy(gameObject);
@@ -38,11 +43,18 @@ public class Player : MonoBehaviour
         ctrl = new();
         rb.mass = mass;
         hp = maxHp;
+
+        StartCoroutine(StartGame());
     }
 
-    private void Start()
+    public IEnumerator StartGame()
     {
+        gameStarted = false;
+
+        yield return Fader.instance.FadeIn();
+
         AudioManager.Instance.PlayMusic(AudioManager.Instance.gameplayMusic);
+        gameStarted = true;
     }
 
     private void OnEnable()
@@ -59,10 +71,12 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        if (ctrl.Player.Button1.IsPressed())
+        if (!gameStarted) return;
+
+        if (ctrl.Player.Button1.IsPressed() && !ctrl.Player.Button2.IsPressed())
         {
             rb.SetRotation(rb.rotation + rotationPower * Time.deltaTime);
-        } else if (ctrl.Player.Button2.IsPressed())
+        } else if (ctrl.Player.Button2.IsPressed() && !ctrl.Player.Button1.IsPressed())
         {
             rb.SetRotation(rb.rotation - rotationPower * Time.deltaTime);
         }
@@ -72,6 +86,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!gameStarted) return;
+
         foreach (BlackHole hole in activeBlackHoles)
         {
             Vector2 separation = (Vector2)hole.transform.position - (Vector2)transform.position;
@@ -85,6 +101,8 @@ public class Player : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext ctx)
     {
+        if (!gameStarted) return;
+
         StartCoroutine(hook.SendHook());
     }
 
@@ -98,6 +116,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!gameStarted) return;
+
         if (hook.state == Hook.HookState.Pulling && collision.gameObject.CompareTag("Object"))
         {
             hook.StopAllCoroutines();
@@ -125,6 +145,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!gameStarted) return;
+
         if (collision.gameObject.CompareTag("BlackHole"))
         {
             BlackHole blackHole = collision.gameObject.GetComponent<BlackHole>();
