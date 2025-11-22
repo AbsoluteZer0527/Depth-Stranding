@@ -225,8 +225,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3758490071711804918, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758490071711804918, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
+      propertyPath: m_TagString
+      value: Hook
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702624124274635345, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7543146213586667419, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
       propertyPath: m_Name
+      value: Hook
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543146213586667419, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543146213586667419, guid: 2685259798fed6f49ab7f70450eadd2c, type: 3}
+      propertyPath: m_TagString
       value: Hook
       objectReference: {fileID: 0}
     m_RemovedComponents: []
