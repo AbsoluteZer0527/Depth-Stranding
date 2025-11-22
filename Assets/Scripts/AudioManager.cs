@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public EventReference gameplayMusic;
 
     [Header("SFX")]
+    public EventReference moo;
 
     [Header("Volume")]
     [Range(0, 1)] public float masterVolume { get; set; }

@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
         hp = maxHp;
     }
 
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameplayMusic);
+    }
+
     private void OnEnable()
     {
         ctrl.Enable();

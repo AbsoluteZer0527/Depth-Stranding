@@ -46,9 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   gameplayMusic:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1057385167
+      Data2: 1263039059
+      Data3: 400468371
+      Data4: 519165798
+    Path: event:/Music/GameplayMusic
+  moo:
+    Guid:
+      Data1: -1286260187
+      Data2: 1121780135
+      Data3: 1723228582
+      Data4: -457500018
+    Path: event:/SFX/Moo
   areBussesInitialized: 0
