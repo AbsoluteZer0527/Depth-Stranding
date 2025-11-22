@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 8510677056603553167}
   - component: {fileID: 1969157067917516473}
   - component: {fileID: 9114329003449183828}
+  - component: {fileID: 5000154908814233206}
   m_Layer: 6
   m_Name: background
   m_TagString: Untagged
@@ -170,3 +171,17 @@ MonoBehaviour:
   chunkSize: 15
   scaleRange: {x: 0.8, y: 1.5}
   minDistance: 1
+--- !u!114 &5000154908814233206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465150338995717340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b314da262cb0f234088f1d01d2e6ecb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
+  player: {fileID: 0}
+  parallaxFactor: 0.5
