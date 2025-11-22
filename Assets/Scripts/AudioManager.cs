@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public EventReference moo;
     public EventReference uiClick;
     public EventReference uiHover;
+    public EventReference collect;
 
     [Header("Volume")]
     [Range(0, 1)] public float masterVolume { get; set; }

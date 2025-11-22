@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
     {
         if (!gameStarted) return;
 
-        if (hook.state == Hook.HookState.Pulling && collision.gameObject.CompareTag("Object"))
+        if (hook.state == Hook.HookState.Pulling && collision.gameObject.CompareTag("Object") && collision.gameObject == hook.hookedObject.gameObject)
         {
             hook.StopAllCoroutines();
             StartCoroutine(hook.Retract());

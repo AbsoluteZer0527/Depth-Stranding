@@ -79,4 +79,11 @@ MonoBehaviour:
       Data3: 1651761080
       Data4: -2113180737
     Path: event:/SFX/UIHover
+  collect:
+    Guid:
+      Data1: -418153400
+      Data2: 1216195610
+      Data3: -1399376763
+      Data4: -825307566
+    Path: event:/SFX/Collect
   areBussesInitialized: 0

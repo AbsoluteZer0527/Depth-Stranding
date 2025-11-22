@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
         {
             Player.instance.money += value;
             UIManager.instance.TextPopup(value);
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.collect);
         }
 
         Destroy(gameObject);
