@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -89,7 +90,10 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("You died lmao");
+        Debug.Log("Game Over!");
+        Time.timeScale = 0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,8 +106,19 @@ public class Player : MonoBehaviour
             SpaceObject spaceObject = collision.gameObject.GetComponent<SpaceObject>();
             if (spaceObject.isCollectable)
             {
-                Item item = collision.gameObject.GetComponent<Item>();
-                item.Collect();
+                HazardousItem hazardousItem = collision.gameObject.GetComponent<HazardousItem>();
+                if (hazardousItem != null)
+                {
+                    hazardousItem.HitPlayer();
+                }
+                else
+                {
+                    Item item = collision.gameObject.GetComponent<Item>();
+                    if (item != null)
+                    {
+                        item.Collect();
+                    }
+                }
             }
         }
     }
