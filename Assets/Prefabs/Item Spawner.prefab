@@ -59,6 +59,8 @@ MonoBehaviour:
     spawnWeight: 5
   - prefab: {fileID: 7613876403295449926, guid: 7d5fe7a02944ace409c2ccf9c2857c9c, type: 3}
     spawnWeight: 1000
+  - prefab: {fileID: 5207042285343049735, guid: d930cadf3700144019936448906a230e, type: 3}
+    spawnWeight: 200
   player: {fileID: 0}
   spawnRadius: 20
   despawnRadius: 30
