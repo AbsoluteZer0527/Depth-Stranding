@@ -30,10 +30,16 @@ public class Player : MonoBehaviour
     public float blackHoleSoftness = 0.5f;
 
     public int money = 0;
+    public int startingMoney = 100;
     public float maxHp = 10.0f;
     public float hp = 10.0f;
 
+    public int hookCost = 5;
+    public int hookCostIncrease = 1;
+    public int currentHookCost;
+
     public bool gameStarted = false;
+    private bool isDying = false;
 
     private void Awake()
     {
@@ -43,6 +49,8 @@ public class Player : MonoBehaviour
         ctrl = new();
         rb.mass = mass;
         hp = maxHp;
+        money = startingMoney;
+        currentHookCost = hookCost;
 
         StartCoroutine(StartGame());
     }
@@ -51,9 +59,16 @@ public class Player : MonoBehaviour
     {
         gameStarted = false;
 
-        yield return Fader.instance.FadeIn();
+        if (Fader.instance != null)
+        {
+            yield return Fader.instance.FadeIn();
+        }
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameplayMusic);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(AudioManager.Instance.gameplayMusic);
+        }
+
         gameStarted = true;
     }
 
@@ -71,7 +86,7 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        if (!gameStarted) return;
+        if (!gameStarted || isDying) return;
 
         if (ctrl.Player.Button1.IsPressed() && !ctrl.Player.Button2.IsPressed())
         {
@@ -81,7 +96,10 @@ public class Player : MonoBehaviour
             rb.SetRotation(rb.rotation - rotationPower * Time.deltaTime);
         }
 
-        if (hp <= 0) Die();
+        if (hp <= 0 || money < currentHookCost)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     private void FixedUpdate()
@@ -102,16 +120,36 @@ public class Player : MonoBehaviour
     private void Fire(InputAction.CallbackContext ctx)
     {
         if (!gameStarted) return;
+        if (hook.state != Hook.HookState.Idle) return;
 
-        StartCoroutine(hook.SendHook());
+        if (money >= currentHookCost)
+        {
+            money -= currentHookCost;
+            UIManager.instance.CostPopup(currentHookCost);
+            currentHookCost += hookCostIncrease;
+            StartCoroutine(hook.SendHook());
+        }
     }
 
-    public void Die()
+    public IEnumerator Die()
     {
+        if (isDying) yield break;
+
+        isDying = true;
+        gameStarted = false;
+
         Debug.Log("Game Over!");
-        Time.timeScale = 0f;
+
+        if (Fader.instance != null)
+        {
+            yield return Fader.instance.FadeOut();
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
