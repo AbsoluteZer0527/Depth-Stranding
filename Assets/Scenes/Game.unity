@@ -922,6 +922,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1df44ec0abccd3c4b89ddb848fd44e70, type: 3}
+--- !u!1 &1963909295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963909297}
+  - component: {fileID: 1963909296}
+  m_Layer: 0
+  m_Name: CometSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1963909296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963909295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85578bc43a39b4c509c63e79ff5f1a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CometSpawner
+  cometPrefab: {fileID: -7678538872967060085, guid: 4a7461807f42f4b93bc5d6779194e416, type: 3}
+  spawnInterval: 3
+  spawnIntervalRange: {x: 2, y: 5}
+  spawnDistance: 15
+--- !u!4 &1963909297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963909295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1173.6334, y: 483.53696, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2047749378 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4699879431641897487, guid: 0bef46b9c8c8994478a8e316810096fb, type: 3}
@@ -1169,3 +1217,4 @@ SceneRoots:
   - {fileID: 1050609347}
   - {fileID: 535010736}
   - {fileID: 1736275071}
+  - {fileID: 1963909297}
