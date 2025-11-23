@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D rb;
     public Hook hook;
+    public DeathScreen deathScreen;
 
     public HashSet<BlackHole> activeBlackHoles = new();
 
@@ -43,7 +44,10 @@ public class Player : MonoBehaviour
         ctrl = new();
         rb.mass = mass;
         hp = maxHp;
-
+        deathScreen.gameObject.SetActive(false);
+    }
+    private void Start()
+    {
         StartCoroutine(StartGame());
     }
 
@@ -106,12 +110,10 @@ public class Player : MonoBehaviour
         StartCoroutine(hook.SendHook());
     }
 
+    [ContextMenu("Kill Player")]
     public void Die()
     {
-        Debug.Log("Game Over!");
-        Time.timeScale = 0f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
+        deathScreen.gameObject.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
