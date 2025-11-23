@@ -2,10 +2,19 @@ using UnityEngine;
 
 public class SpaceObject : MonoBehaviour
 {
+    public enum SoundType
+    {
+        None,
+        Metal,
+        Rock,
+        Cow
+    }
+
     [Header("Properties")]
     public Rigidbody2D rb;
     public float mass;
     public float scale;
+    public SoundType soundType = SoundType.None;
     //from luna
     public SpriteRenderer spriteRenderer;
 

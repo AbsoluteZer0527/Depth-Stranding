@@ -137,10 +137,18 @@ public class Player : MonoBehaviour
     }
 
     [ContextMenu("Kill Player")]
-    public void Die()
+    public void KillPlayer()
+    {
+        StartCoroutine(Die());
+    }
+
+    public IEnumerator Die()
     {
         isDying = true;
         gameStarted = false;
+
+        yield return new WaitForSeconds(0.5f);
+
         deathScreen.gameObject.SetActive(true);
     }
 
@@ -155,6 +163,22 @@ public class Player : MonoBehaviour
             {
                 hazardousItem.HitPlayer();
                 return;
+            }
+
+            SpaceObject spaceObject = collision.gameObject.GetComponent<SpaceObject>();
+            switch (spaceObject.soundType)
+            {
+                case SpaceObject.SoundType.None: break;
+                case SpaceObject.SoundType.Metal:
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.metal);
+                    break;
+                case SpaceObject.SoundType.Rock: 
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.rock);
+                    break;
+                case SpaceObject.SoundType.Cow: 
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.moo);
+                    break;
+                default: break;
             }
         }
 
