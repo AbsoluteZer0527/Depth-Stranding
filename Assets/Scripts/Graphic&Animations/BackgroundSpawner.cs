@@ -40,7 +40,7 @@ public class BackgroundSpawner : MonoBehaviour
     void UpdateChunks()
     {
         // Use this transform's position (which moves with parallax)
-        Vector2Int currentChunk = GetChunkCoord(transform.position);
+        Vector2Int currentChunk = GetChunkCoord(player.position);
         int radius = Mathf.CeilToInt(spawnRadius / chunkSize);
 
         HashSet<Vector2Int> chunksToKeep = new HashSet<Vector2Int>();

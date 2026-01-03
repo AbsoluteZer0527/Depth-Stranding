@@ -33,7 +33,14 @@ public class Player : MonoBehaviour
     public int money = 0;
     public int startingMoney = 100;
     public float maxHp = 10.0f;
-    public float hp = 10.0f;
+    private float _hp;
+    public float hp 
+    { 
+        get { return _hp; }
+        set { _hp = Mathf.Min(value, maxHp); }
+    }
+    public static int maxMoneyEver = 0;
+    
 
     public int hookCost = 5;
     public int hookCostIncrease = 1;
@@ -104,6 +111,11 @@ public class Player : MonoBehaviour
         if (hp <= 0 || (money < currentHookCost && hook.state == Hook.HookState.Idle))
         {
             StartCoroutine(Die());
+        }
+
+        if (money > maxMoneyEver)
+        {
+            maxMoneyEver = money;
         }
     }
 
