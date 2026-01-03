@@ -32,10 +32,10 @@ take yerselves some milk!
 title: NPC5
 ---
 belileanldlaenidddnfabei.
--> What.
-    ieaoeiaoieoaaaoil?
--> Okay?
-    ialskeiadsoiuelil!
+You: What.
+ieaoeiaoieoaaaoil?
+You: Okay?
+ialskeiadsoiuelil!
 
 oibilsoaisoeiobi...!
 // <<if not visited("NPC5")>>
